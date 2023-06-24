@@ -18,7 +18,10 @@
 
 - [Riverbank Computer](https://riverbankcomputing.com/software/pyqt/download)
 Used for downloading PyQT. 
-- [Web Site Name](http://url.link.goes.here)
+- [Python Guis](https://www.pythonguis.com/pyqt6-tutorial/)
+Walked me through getting my interface set up. 
+- [Qt Documentation](https://doc.qt.io/qt-5/widget-classes.html#basic-widget-classes)
+Lists all the different widget class functions. 
 
 # Future Work
 
