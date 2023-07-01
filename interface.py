@@ -4,8 +4,8 @@ import sys
 
 # Now we are going to get stuff from PyQT6
 # Have to tell it what we want because they offer a lot of stuff
-from PyQt6.QtCore import QSize, Qt
-from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton, QComboBox, QGridLayout, QCheckBox, QLabel, QStatusBar, QToolBar
+from PyQt6.QtCore import Qt
+from PyQt6.QtWidgets import QApplication, QHBoxLayout, QLabel, QMainWindow, QPushButton, QStackedLayout, QVBoxLayout, QWidget
 from PyQt6.QtGui import QPalette, QColor, QAction, QIcon
 
 # Creating the color class to customize our interface layout
@@ -24,107 +24,87 @@ class Color(QWidget):
 class MainWindow(QMainWindow):
     def __init__(self):
         # Since I subclassed a Qtclass, I have to call the super__init__ function to setup my object
-        super(MainWindow, self).__init__()
+        super().__init__()
 
-        # Giving my window a title which is the name of the app
+        # Giving my app a title window. 
         self.setWindowTitle("ITIT")
 
-        # Creating the page layout.
-        layout = QGridLayout()
+        # Setting up the interface layout using to several different types
+        # Page layout will work vertically
+        pagelayout = QVBoxLayout()
+        # The buttons need to be laid out horizontally
+        button_layout = QHBoxLayout()
+        # I need the pages to be stacked according to what button is pushed
+        # The stacklayout allows that
+        self.stacklayout = QStackedLayout()
 
-        # Creating the margins for the layout
-        layout.setContentsMargins(10,10,10,10)
-        layout.setSpacing(10)
+        # Have to pass my button_layout and my self.stacklayout through our page layout to help it align
+        pagelayout.addLayout(button_layout)
+        pagelayout.addLayout(self.stacklayout)
 
-        # Grids start at (0,0) which is the top left-hand corner
-        # I want mine to be 4 X 4
+        # Creating my Home Button
+        btn = QPushButton("Home")
+        # Telling the program what needs to happen when the button is pushed
+        # In this case, it needs to activate_tab_1 which will hold everything on the home page
+        btn.pressed.connect(self.activate_tab_1)
+        # Adding the button to our layout
+        button_layout.addWidget(btn)
+        # Making it red so you can see the changes from switching screens
+        self.stacklayout.addWidget(Color("red"))
 
-        # First Row aka my Navigation bar.
-        layout.addWidget(Color('purple'), 0, 0)
-        layout.addWidget(Color('blue'), 0, 1)
-        layout.addWidget(Color('green'), 0, 2)
-        layout.addWidget(Color('brown'), 0, 3)
-        
+        # Followed the "Home" button logic
+        # Creating my Search Inventory Button
+        btn = QPushButton("Search Inventory")
+        btn.pressed.connect(self.activate_tab_2)
+        button_layout.addWidget(btn)
+        self.stacklayout.addWidget(Color("green"))
 
+        # Followed the "Home" button logic
+        # Creating my Add Items Button        
+        btn = QPushButton("Add Items")
+        btn.pressed.connect(self.activate_tab_3)
+        button_layout.addWidget(btn)
+        self.stacklayout.addWidget(Color("yellow"))
+
+        # Followed the "Home" button logic
+        # Creating my Update Items Button
+        btn = QPushButton("Update Items")
+        btn.pressed.connect(self.activate_tab_4)
+        button_layout.addWidget(btn)
+        self.stacklayout.addWidget(Color("blue"))
+
+        # Followed the "Home" button logic
+        # Creating my Delete Items Button
+        btn = QPushButton("Delete Items")
+        btn.pressed.connect(self.activate_tab_5)
+        button_layout.addWidget(btn)
+        self.stacklayout.addWidget(Color("purple"))
+
+        # Creates blank widgets that our buttons go into
+        # Allows the "stacking" to happen
         widget = QWidget()
-        widget.setLayout(layout)
+        widget.setLayout(pagelayout)
         self.setCentralWidget(widget)
 
+    # Defines what to do if home button is pushed
+    def activate_tab_1(self):
+        self.stacklayout.setCurrentIndex(0)
 
-        # Tool Bar
-        label = QLabel("Hello!")
-        label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+    # Defines what to do if search inventory button is pushed
+    def activate_tab_2(self):
+        self.stacklayout.setCurrentIndex(1)
 
-        #self.setCentralWidget(label)
+    # Defines what to do if add items button is pushed
+    def activate_tab_3(self):
+        self.stacklayout.setCurrentIndex(2)
 
-        #Creating the toolbar
-        toolbar = QToolBar("ITIT Toolbar")
-        # I want my toolbar to have icons
-        # Setting the icon size
-        toolbar.setIconSize(QSize(16,16))
-        self.addToolBar(toolbar)
+    # Defines what to do if update items button is pushed
+    def activate_tab_4(self):
+        self.stacklayout.setCurrentIndex(3)
 
-        # My toolbar will need 4 buttons
-        # 1 to search, 2 to add, 3 to update, and 4 to search
-
-        # Creating the first button
-        button_action = QAction(QIcon("SearchIcon.png"),"Search", self)
-        button_action.setStatusTip("Search for Items in Inventory")
-        button_action.triggered.connect(self.onMyToolBarButton1Click)
-        button_action.setCheckable(True)
-        toolbar.addAction(button_action)
-
-        # Making a space on my toolbar
-        toolbar.addSeparator()
-
-        # Creating the second button
-        button_action2 = QAction(QIcon("PlusIcon"),"Add", self)
-        button_action2.setStatusTip("Add Items to Inventory")
-        button_action2.triggered.connect(self.onMyToolBarButton2Click)
-        button_action2.setCheckable(True)
-        toolbar.addAction(button_action2)
-
-        # Making a space on my toolbar
-        toolbar.addSeparator()
-
-        # Creating the third button
-        button_action3 = QAction(QIcon("UpdateIcon"),"Update", self)
-        button_action3.setStatusTip("Update Items in Inventory")
-        button_action3.triggered.connect(self.onMyToolBarButton3Click)
-        button_action3.setCheckable(True)
-        toolbar.addAction(button_action3)
-
-        # Making a space on my toolbar
-        toolbar.addSeparator()
-
-        # Creating the fourth button
-        button_action4 = QAction(QIcon("DeleteIcon.png"),"Delete", self)
-        button_action4.setStatusTip("Delete Items in Inventory")
-        button_action4.triggered.connect(self.onMyToolBarButton4Click)
-        button_action4.setCheckable(True)
-        toolbar.addAction(button_action4)
-
-        # Making a space on my toolbar
-        toolbar.addSeparator()
-
-        self.setStatusBar(QStatusBar(self))
-    
-    # Defining what happens if search button is clicked
-    def onMyToolBarButton1Click(self, s):
-        print("They want to search the database.")
-
-    # Defining what happens if add button is clicked
-    def onMyToolBarButton2Click(self, s):
-        print("They want to add items to the inventory.")
-
-    # Defining what happens if update button is clicked.
-    def onMyToolBarButton3Click(self, s):
-        print("They want t update items in the inventory.")
-
-    # Defining what happens if delete button is clicked
-    def onMyToolBarButton4Click(self, s):
-        print("They want to delete an item in the inventory.")
-        
+    # Defines what to do if delete button is pushed
+    def activate_tab_5(self):
+        self.stacklayout.setCurrentIndex(4)
 
 # Creating the application
 # Passing in sys.argv to allow command line arguements
