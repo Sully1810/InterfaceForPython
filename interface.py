@@ -70,7 +70,7 @@ class MainWindow(QMainWindow):
         # Creating the first button
         button_action = QAction(QIcon("SearchIcon.png"),"Search", self)
         button_action.setStatusTip("Search for Items in Inventory")
-        button_action.triggered.connect(self.onMyToolBarButtonClick)
+        button_action.triggered.connect(self.onMyToolBarButton1Click)
         button_action.setCheckable(True)
         toolbar.addAction(button_action)
 
@@ -80,7 +80,7 @@ class MainWindow(QMainWindow):
         # Creating the second button
         button_action2 = QAction(QIcon("PlusIcon"),"Add", self)
         button_action2.setStatusTip("Add Items to Inventory")
-        button_action2.triggered.connect(self.onMyToolBarButtonClick)
+        button_action2.triggered.connect(self.onMyToolBarButton2Click)
         button_action2.setCheckable(True)
         toolbar.addAction(button_action2)
 
@@ -90,7 +90,7 @@ class MainWindow(QMainWindow):
         # Creating the third button
         button_action3 = QAction(QIcon("UpdateIcon"),"Update", self)
         button_action3.setStatusTip("Update Items in Inventory")
-        button_action3.triggered.connect(self.onMyToolBarButtonClick)
+        button_action3.triggered.connect(self.onMyToolBarButton3Click)
         button_action3.setCheckable(True)
         toolbar.addAction(button_action3)
 
@@ -100,7 +100,7 @@ class MainWindow(QMainWindow):
         # Creating the fourth button
         button_action4 = QAction(QIcon("DeleteIcon.png"),"Delete", self)
         button_action4.setStatusTip("Delete Items in Inventory")
-        button_action4.triggered.connect(self.onMyToolBarButtonClick)
+        button_action4.triggered.connect(self.onMyToolBarButton4Click)
         button_action4.setCheckable(True)
         toolbar.addAction(button_action4)
 
@@ -108,28 +108,23 @@ class MainWindow(QMainWindow):
         toolbar.addSeparator()
 
         self.setStatusBar(QStatusBar(self))
-
-    def onMyToolBarButtonClick(self, s):
-        print("click", s)
-
-
-    #     # Adding a Push Button
-    #     button = QPushButton("Push Me!")
-    #     # Setting a maximum button size. 
-    #     button.setMaximumSize(60, 48)
-    #     # Checking to see if the button was clicked
-    #     button.setCheckable(True)
-    #     # Telling the program to connect with the button was clicked to make stuff happen
-    #     # Slot one is doing this 
-    #     button.clicked.connect(self.the_button_was_clicked)
-
-    #     # Set button to be the central widget of the Window
-    #     # Puts it in the middle
-    #     self.setCentralWidget(button)
     
-    # # Defining what happens when the button is clicked
-    # def the_button_was_clicked(self):
-    #     print("Clicked.")
+    # Defining what happens if search button is clicked
+    def onMyToolBarButton1Click(self, s):
+        print("They want to search the database.")
+
+    # Defining what happens if add button is clicked
+    def onMyToolBarButton2Click(self, s):
+        print("They want to add items to the inventory.")
+
+    # Defining what happens if update button is clicked.
+    def onMyToolBarButton3Click(self, s):
+        print("They want t update items in the inventory.")
+
+    # Defining what happens if delete button is clicked
+    def onMyToolBarButton4Click(self, s):
+        print("They want to delete an item in the inventory.")
+        
 
 # Creating the application
 # Passing in sys.argv to allow command line arguements
