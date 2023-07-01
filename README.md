@@ -22,6 +22,8 @@ Used for downloading PyQT.
 Walked me through getting my interface set up. 
 - [Qt Documentation](https://doc.qt.io/qt-5/widget-classes.html#basic-widget-classes)
 Lists all the different widget class functions. 
+- [p.yusukekamiyamane Icons](https://p.yusukekamiyamane.com/)
+Where I got my icons from.
 
 # Future Work
 
