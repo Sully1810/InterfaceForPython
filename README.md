@@ -1,18 +1,16 @@
 # Overview
 
-{Provide a description of the software that you wrote.}
+I wrote this software to create an interface for my SQL Database that I createad using Python. 
 
-{Describe your purpose for writing this software.}
+Below I have linked my YouTube video demonstartion. 
 
-{Provide a link to your YouTube demonstration. It should be a 4-5 minute demo of the software running and a walkthrough of the code.}
-
-[Software Demo Video](http://youtube.link.goes.here)
+[Python Interface Demo](https://youtu.be/6WXNNn4cgO0)
 
 # Development Environment
 
-{Describe the tools that you used to develop the software}
+I worked primarily in VS Code with a lot of internet researching. 
 
-{Describe the programming language that you used and any libraries.}
+I wrote this program in Python and used the PyQt6 libraries. 
 
 # Useful Websites
 
@@ -22,13 +20,11 @@ Used for downloading PyQT.
 Walked me through getting my interface set up. 
 - [Qt Documentation](https://doc.qt.io/qt-5/widget-classes.html#basic-widget-classes)
 Lists all the different widget class functions. 
-- [p.yusukekamiyamane Icons](https://p.yusukekamiyamane.com/)
-Where I got my icons from.
 
 # Future Work
 
-{Make a list of things that you need to fix, improve, and add in the future.}
+This is what I hope to accomplish and fix in the future. 
 
-- Item 1
-- Item 2
-- Item 3
+- Finish integrating my SQL database into the interface
+- Create a more cohesive color scheme 
+- Work with PyQt6 again
